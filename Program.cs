@@ -1,8 +1,8 @@
 ﻿using System.Management;
 
-var osSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem");
+var usbSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE DeviceID LIKE 'USB%'");
 
-foreach (ManagementObject os in osSearcher.Get()) {
-    Console.WriteLine($"OC: {os["Caption"]}"); 
-    Console.WriteLine($"Версия: {os["Version"]}");
+Console.WriteLine("устройства Plug and Plау с идентиикатором USB: ");
+foreach (ManagementObject device in usbSearcher.Get()) {
+    Console.WriteLine($" - {device["Name"]}");
 }
